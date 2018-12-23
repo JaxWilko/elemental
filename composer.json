@@ -1,0 +1,20 @@
+{
+    "name": "jaxwilko/elemental",
+    "authors": [
+        {
+            "name": "Jack Wilko",
+            "email": "me@jackwilky.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^4.2"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Elemental\\": "src"
+        }
+    }
+}
