@@ -3,13 +3,14 @@
 namespace Elemental;
 
 use Elemental\Interfaces\ElementInterface;
+use Elemental\Traits\AttributableTrait;
 use Elemental\Traits\AttributeTrait;
 use Elemental\Traits\ClassTrait;
 use Elemental\Traits\RenderTrait;
 
 class Element implements ElementInterface
 {
-    use AttributeTrait, ClassTrait, RenderTrait;
+    use AttributeTrait, AttributableTrait, ClassTrait, RenderTrait;
 
     protected $tag;
     protected $format = '<{tag}{attributes}{classes}>{nl}{text}{children}{nl}{t}</{tag}>{nl}';
