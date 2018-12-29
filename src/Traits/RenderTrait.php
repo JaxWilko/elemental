@@ -26,12 +26,12 @@ trait RenderTrait
         return (count($this->classList) > 0) ? sprintf(' class="%s"', implode(' ', $this->classList)) : '';
     }
 
-    protected function renderChildren(int $recursionLevel = 0)
+    protected function subRender(string $side = 'children', int $recursionLevel = 0)
     {
         $recursionLevel++;
         $children = '';
-        if (count($this->children) > 0) {
-            foreach ($this->children as $child) {
+        if (count($this->{$side}) > 0) {
+            foreach ($this->{$side} as $child) {
                 if (!$child instanceof ElementInterface) {
                     continue;
                 }
@@ -49,9 +49,11 @@ trait RenderTrait
             '{attributes}' => $this->renderAttributes(),
             '{classes}' => $this->renderClasses(),
             '{text}' => $this->textContent,
-            '{children}' => $this->renderChildren($recursionLevel),
+            '{children}' => $this->subRender('children', $recursionLevel),
+            '{before}' => $this->subRender('before', $recursionLevel - 1),
+            '{after}' => $this->subRender('after', $recursionLevel - 1),
             '{nl}' => PHP_EOL,
             '{t}' => str_repeat("\t", $recursionLevel)
-        ], $this->format);
+        ], '{before}'. $this->format . '{after}');
     }
 }
