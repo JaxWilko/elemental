@@ -7,15 +7,20 @@ use Elemental\Traits\AttributableTrait;
 use Elemental\Traits\AttributeTrait;
 use Elemental\Traits\ClassTrait;
 use Elemental\Traits\RenderTrait;
+use Elemental\Traits\SurroundingTrait;
 
 class Element implements ElementInterface
 {
-    use AttributeTrait, AttributableTrait, ClassTrait, RenderTrait;
+    use AttributeTrait, AttributableTrait, ClassTrait, SurroundingTrait, RenderTrait;
 
     protected $tag;
     protected $format = '<{tag}{attributes}{classes}>{nl}{text}{children}{nl}{t}</{tag}>{nl}';
     protected $children = [];
     protected $textContent;
+
+    protected $attributable = [
+        'id'
+    ];
 
     public function __construct(string $tag)
     {
